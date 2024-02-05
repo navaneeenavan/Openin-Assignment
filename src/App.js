@@ -7,9 +7,9 @@ import { IoLogoDiscord } from "react-icons/io5";
 
 function App() {
   return (
-    <div className="w-screen overflow-x-hidden flex font-poppins flex flex-row bg-[#F8FAFF]">
-      <div className="w-1/5 h-screen bg-[rgb(96,91,255)] absolute top-0"></div>
-      <div className="w-1/2 h-screen bg-[rgb(96,91,255)] transform -skew-x-12 flex flex-col">
+    <div className="w-screen overflow-x-hidden flex font-poppins  flex-row bg-[#F8FAFF]">
+      <div className=" lg:w-1/5 lg:h-screen bg-[rgb(96,91,255)] lg:absolute top-0"></div>
+      <div className="hidden lg:w-1/2 h-screen bg-[rgb(96,91,255)] transform -skew-x-12 lg:flex flex-col">
         <div className="transform skew-x-12 flex flex-col justify-between h-svh m-10 ">
           <div className="flex w-full justify-start">
             <DiEnvato size={120} className="text-white flex " />
@@ -25,30 +25,33 @@ function App() {
           </div>
         </div>
       </div>
+      <div className="lg:hidden sm:flex w-full h-28 absolute top-0 z-10 bg-[rgb(96,91,255)]"> </div>
 
-      <div className="w-1/2 h-screen bg-[#F8FAFF] flex flex-col justify-center items-center ">
-        <div className="max-w-md pl-5 w-full ">
-          <div className="pl-10 space-y-3">
+
+      <div className=" w-full lg:w-1/2 h-screen bg-[#F8FAFF] flex flex-col justify-center items-center ">
+        <div className="max-w-md lg:pl-5 w-full pr-10 ">
+          <div className="pl-5 lg:pl-10 space-y-3">
             <p className="text-3xl font-bold"> Sign In</p>
             <p>Sign in to your account</p>
           </div>
-          <div className="flex flex-row w-full space-x-3 px-10 max-w-md mt-5 ">
-            <div className="flex justify-center items-center rounded-lg w-full h-10 bg-white text-left px-5 text-nowrap space-x-5">
+          <div className="flex flex-row w-full space-x-3 px-5 lg:px-10  max-w-md mt-5 ">
+            <div className="flex justify-start items-center rounded-lg w-full h-10 bg-white text-left lg:px-5 text-nowrap space-x-5 lg:space-x-2">
               <FcGoogle size={25} />
               <p className="text-sm justify-center">Sign-in with Google</p>
             </div>
-            <div className="flex justify-center items-center rounded-lg w-full h-10 bg-white text-center px-5 text-nowrap space-x-5">
+            <div className="flex justify-center items-center rounded-lg w-full h-10 bg-white text-center px-5 text-nowrap space-x-5 lg:space-x-2">
               <AiFillApple className="text-gray-500" size={25} />
               <p className="text-sm">Sign-in with Apple</p>
             </div>
           </div>
-          <div className="flex flex-col w-full h-fit items-start px-8 py-7 bg-white m-10 space-y-6 text-left rounded-xl">
+          <div className="flex flex-col w-full h-fit items-start mr-5 px-4 lg:px-8 lg:py-7 bg-white m-8 lg:m-10 space-y-6 text-left rounded-xl">
             <p className="w-full items-start">Email Address</p>
             <input
               type="text"
               size={30}
-              className="w-full h-10 bg-gray-100 rounded-lg text-left pl-2"
+              className="w-full h-10 bg-gray-100 rounded-lg text-left pl-2 mr-10"
             />
+            {/* <div className="flex flex-col w-full h-fit items-start px-8 py-7 bg-white m-10 space-y-6 text-left rounded-xl"></div> */}
             <p className="w-full items-start">Password</p>
             <input
               type="password"
@@ -61,7 +64,7 @@ function App() {
               Sign In
             </button>
           </div>
-          <div className="flex justify-center pl-10 text-gray-400">
+          <div className="flex justify-center items-center pl-10 text-gray-400">
             Don't have an account ?
             <a className="text-blue-500 ml-1" href="https://psgtech.edu">
               {" "}
@@ -69,6 +72,13 @@ function App() {
             </a>
           </div>
         </div>
+
+        <div className=" flex gap-10  items-end lg:hidden mt-24">
+            <FaGithub size={40} className="text-black" />
+            <AiFillTwitterCircle size={40} className="text-black" />
+            <FaLinkedin size={40} className="text-black" />
+            <IoLogoDiscord size={40} className="text-black" />
+          </div>
       </div>
     </div>
   );
