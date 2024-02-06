@@ -47,7 +47,7 @@ function Home() {
           </div>
         </div>
         <div className="h-auto mx-auto items-center justify-center bg-white  rounded-lg flex flex-col pt-5 ">
-          <div class="max-w-xl items-center flex justify-center px-32">
+          <div class="max-w-xl items-center flex justify-center px-32 mx-auto">
             <label class="flex justify-center  px-56 h-56 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
               <span class="flex items-center ">
                 <svg

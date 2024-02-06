@@ -1,4 +1,3 @@
-
 import React from "react";
 import { DiEnvato } from "react-icons/di";
 import { FcGoogle } from "react-icons/fc";
@@ -11,17 +10,32 @@ import { supabase } from "./SupabaseClient";
 function Paths() {
   const navigate = useNavigate();
 
-  const homeNavgiate = () =>
-  {
-    navigate('/')
-  }
+  const homeNavigate = () => {
+    navigate("/");
+  };
 
-  const login = async() =>
-  {
-   await  supabase.auth.signInWithOAuth({
-    provider: 'google',
-  })
-  }
+  const handleLogin = async () => {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+      });
+  
+      
+const { data: { user } } = await supabase.auth.getUser()
+
+      console.log(user);
+      
+      if (user) {
+        console.log("user is Authenticated Successfully");
+        homeNavigate();
+      } else {
+        console.log("user is not Authenticated");
+      }
+    } catch (error) {
+      console.error("Authentication failed:", error.message);
+      // Handle error, show user-friendly message, etc.
+    }
+  };
   return (
     <div className="w-screen overflow-x-hidden flex font-poppins  flex-row bg-[#F8FAFF]">
       <div className=" lg:w-1/5 lg:h-screen bg-[rgb(96,91,255)] lg:absolute top-0"></div>
@@ -41,12 +55,10 @@ function Paths() {
           </div>
         </div>
       </div>
-      <div className="lg:hidden flex flex-row items-center pl-5 space-x-2 w-full h-20 absolute top-0 z-10 bg-[rgb(96,91,255)]"> 
-      <DiEnvato size={30} className="text-white  " />
-      <h3 className = "text-2xl text-white font-poppins"> BASE </h3>
-     
+      <div className="lg:hidden flex flex-row items-center pl-5 space-x-2 w-full h-20 absolute top-0 z-10 bg-[rgb(96,91,255)]">
+        <DiEnvato size={30} className="text-white  " />
+        <h3 className="text-2xl text-white font-poppins"> BASE </h3>
       </div>
-
 
       <div className=" w-full lg:w-1/2 h-screen bg-[#F8FAFF] flex flex-col justify-center items-center ">
         <div className="max-w-md lg:pl-5 w-full pr-10 mt-5">
@@ -80,7 +92,10 @@ function Paths() {
               required
             />
             <p className="text-blue-500 mt-2"> Forgot Password ?</p>
-            <button onClick={login} className="w-full rounded-lg bg-blue-500 h-10 mt-5">
+            <button
+              onClick={handleLogin}
+              className="w-full rounded-lg bg-blue-500 h-10 mt-5"
+            >
               Sign In
             </button>
           </div>
@@ -94,11 +109,11 @@ function Paths() {
         </div>
 
         <div className=" flex gap-10  items-end lg:hidden mt-24">
-            <FaGithub size={40} className="text-black" />
-            <AiFillTwitterCircle size={40} className="text-black" />
-            <FaLinkedin size={40} className="text-black" />
-            <IoLogoDiscord size={40} className="text-black" />
-          </div>
+          <FaGithub size={40} className="text-black" />
+          <AiFillTwitterCircle size={40} className="text-black" />
+          <FaLinkedin size={40} className="text-black" />
+          <IoLogoDiscord size={40} className="text-black" />
+        </div>
       </div>
     </div>
   );
