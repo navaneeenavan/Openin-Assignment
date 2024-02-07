@@ -17,7 +17,7 @@ import { GrUserManager } from "react-icons/gr";
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="flex flex-row w-screen">
+    <div className="flex flex-row w-screen lg:space-x-96">
       {isOpen && (
         <div className="flex flex-col  items-center lg:hidden w-full h-screen absolute top-1 bg-white">
           <div className="flex flex-row w-full justify-between px-7 py-10">
@@ -51,7 +51,7 @@ function Home() {
         </div>
       )}
 
-      <div className=" hidden lg:w-1/5 lg:block z-50 bg-white  h-screen overflow-hidden">
+      <div className=" hidden lg:w-1/5 lg:block z-50 bg-white  h-screen overflow-hidden lg:fixed">
         <div className="flex flex-col justify-start h-screen">
           <div className="flex  flex-row justify-center mt-5 w-full items-center space-x-3">
             <DiEnvato size={60} className="text-blue-500" />
