@@ -13,9 +13,12 @@ import { CiBellOn } from "react-icons/ci";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 import { GrUserManager } from "react-icons/gr";
+import { table } from "./data";
 
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(table[0].tag);
   return (
     <div className="flex flex-row w-screen lg:space-x-96">
       {isOpen && (
@@ -167,38 +170,14 @@ function Home() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 px-20">
-              <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {" "}
-                  1
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {" "}
-                  https://google.com
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  SamplePrefix
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> <Dropdown1 /></td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><TagBar number={1} /></td>
-              </tr>
-              <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {" "}
-                  1
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  https://google.com
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <Dropdown1 />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {" "}
-                  <TagBar number={1} />
-                </td>
-              </tr>
+              {table.map((value, key) => (
+                <TableField
+                  no={value.no}
+                  link={value.link}
+                  prefix={value.prefix}
+                  Tags={value.tag}
+                />
+              ))}
             </tbody>
           </table>
         </div>
@@ -222,7 +201,7 @@ function TagBar({ number }) {
     </div>
   );
 }
-function Dropdown1({tag_array}) {
+function Dropdown1({ tag_array }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -239,8 +218,7 @@ function Dropdown1({tag_array}) {
         onClick={toggleDropdown}
         type="button"
         className="text-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center text-grey-300 "
-        value = {tag_array}
-        
+        value={tag_array}
       >
         Select Tag{" "}
         <svg
@@ -306,4 +284,36 @@ function Dropdown1({tag_array}) {
     </div>
   );
 }
+
+function TableField({ no, link, prefix, Tags })
+  
+{
+  console.log(Tags[0] +  "this is the value");
+  return(
+<tr className="bg-white">
+    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+      {" "}
+      {no}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {prefix}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      {link}
+    </td>
+    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <Dropdown1 />
+    </td>
+    <td className="px-6 py-4 flex space-x-2 whitespace-nowrap text-sm text-gray-500">
+      {" "}
+      {Tags?.map((value, key) => (
+        <TagBar key={key} number={value} />
+      ))}
+    </td>
+  </tr>
+  )
+
+  
+}
+
 export default Home;
