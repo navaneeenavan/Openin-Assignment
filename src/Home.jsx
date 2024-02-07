@@ -11,8 +11,8 @@ import { GrUserManager } from "react-icons/gr";
 
 function Home() {
   return (
-    <div className="flex flex-row">
-      <div className="w-1/5 block z-50 bg-white  h-screen overflow-hidden">
+    <div className="flex flex-row w-screen">
+      <div className=" hidden lg:w-1/5 lg:block z-50 bg-white  h-screen overflow-hidden">
         <div className="flex flex-col justify-start h-screen">
           <div className="flex  flex-row justify-center mt-5 w-full items-center space-x-3">
             <DiEnvato size={60} className="text-blue-500" />
@@ -36,20 +36,24 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="w-screen  bg-[#F8FAFF] flex flex-col overflow-y-scroll">
-        <div className="w-full h-32 flex justify-between px-10 py-10">
-          <h6 className="font-poppins text-2xl"> Upload CSV </h6>
-          <div className="flex space-x-5 ">
+      <div className="w-screen  bg-[#F8FAFF] flex flex-col overflow-x-scroll">
+        <div className="w-full h-28 flex justify-between px-10 py-10 bg-white lg:bg-transparent">
+          <h6 className="hidden lg:flex font-poppins text-2xl"> Upload CSV </h6>
+          {/* ham menu  */}
+
+
+          <div className="flex space-x-5 justify-evenly">
             <CiBellOn size={40} />
-            <div className="h-15 w-12 rounded-full border border-1 items-center flex justify-center pb-2">
-              <GrUserManager size={35} />{" "}
+            <div className="h-12 w-12 rounded-full border border-1 items-center flex justify-center ">
+              <GrUserManager size={28} />{" "}
             </div>
           </div>
         </div>
-        <div className="h-auto mx-auto items-center justify-center bg-white  rounded-lg flex flex-col pt-5 ">
-          <div class="max-w-xl items-center flex justify-center px-32 mx-auto">
-            <label class="flex justify-center  px-56 h-56 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-              <span class="flex items-center ">
+        <div className = "lg:hidden p-10 text-xl"> Upload CSV </div>
+        <div class="h-auto items-center justify-center bg-white rounded-lg flex flex-col  mx-auto max-w-screen-sm overflow-hidden lg:mt-5">
+          <div class="lg:max-w-xl items-center flex justify-center py-10 px-10 md:px-12 lg:px-32 mx-auto">
+            <label class="flex justify-center px-7 md:px-8 h-36 md:h-56 transition bg-white border-2 overflow-x-scroll border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+              <span class="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="w-6 h-6 text-gray-600"
@@ -73,108 +77,110 @@ function Home() {
             </label>
           </div>
 
-          <button className=" bg-blue-400 rounded-lg space-x-3  mt-5 h-14 w-full">
+          <button class="bg-blue-400 rounded-lg space-x-3 mt-5 h-14 w-full">
             Upload
           </button>
         </div>
-        <h6 className="font-poppins font-light text-xl ml-10 items-end ">
+
+        <h6 className="font-poppins font-light text-xl ml-10 items-end  mt-10">
           Uploads{" "}
         </h6>
-
-        <table className="min-w-full divide-y divide-gray-200  p-48">
-          <thead className="bg-gray-50">
-            <tr>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                SI No.
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Links
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Prefix
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Add Tags
-              </th>
-              <th
-                scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-              >
-                Selected Tags
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200 px-20">
-            <tr className="bg-white">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {" "}
-                1
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                https://google.com
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ...
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-            </tr>
-            <tr className="bg-white">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {" "}
-                1
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                https://google.com
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ...
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-            </tr>
-            <tr className="bg-white">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {" "}
-                1
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                https://google.com
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ...
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-            </tr>
-            <tr className="bg-white">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {" "}
-                1
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                https://google.com
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                ...
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="w-full lg:w-auto overflow-x-scroll lg:overflow-x-hidden">
+          <table className=" m-10 w-auto lg:w-full divide-y divide-gray-200  p-48 overflow-x-scroll">
+            <thead className="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  SI No.
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Links
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Prefix
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Add Tags
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Selected Tags
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200 px-20">
+              <tr className="bg-white">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {" "}
+                  1
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  https://google.com
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  ...
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr className="bg-white">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {" "}
+                  1
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  https://google.com
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  ...
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr className="bg-white">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {" "}
+                  1
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  https://google.com
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  ...
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+              <tr className="bg-white">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {" "}
+                  1
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  https://google.com
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  ...
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
