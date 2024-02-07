@@ -1,42 +1,42 @@
-import React from "react";
+import {React} from "react";
 import { DiEnvato } from "react-icons/di";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple, AiFillTwitterCircle } from "react-icons/ai";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoLogoDiscord } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "./SupabaseClient";
+import { supabase  } from "./SupabaseClient";
+
 
 function Paths() {
-  const navigate = useNavigate();
-
-  const homeNavigate = () => {
-    navigate("/");
-  };
+  const navigate = useNavigate();  // Use useNavigate
 
   const handleLogin = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: "google",
-      });
+  
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      })
+      console.log(data);
+      console.log(error);
+        
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      console.log(user);
-
-      if (user) {
-        console.log("user is Authenticated Successfully");
-        homeNavigate();
-      } else {
-        console.log("user is not Authenticated");
-      }
-    } catch (error) {
-      console.error("Authentication failed:", error.message);
-      // Handle error, show user-friendly message, etc.
-    }
+      const token = await supabase.auth.signInWithIdToken()
+      console.log(token)
+      console.log("hello")
   };
+  
+
+  const login = () =>
+  {
+    console.log("it has been clicked");
+    navigate("/home")
+  }
   return (
     <div className="w-screen overflow-x-hidden flex font-poppins  flex-row bg-[#F8FAFF]">
       <div className=" lg:w-1/5 lg:h-screen bg-[rgb(96,91,255)] lg:absolute top-0"></div>
@@ -94,7 +94,8 @@ function Paths() {
             />
             <p className="text-blue-500 mt-2"> Forgot Password ?</p>
             <button
-              onClick={handleLogin}
+              onClick={login}
+            
               className="w-full rounded-lg bg-blue-500 h-10 mt-5"
             >
               Sign In

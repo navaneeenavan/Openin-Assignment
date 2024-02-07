@@ -8,17 +8,20 @@ import {
 import Home from "./Home.jsx";
 import Paths from "./Paths.jsx";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/Auth" element={<Paths />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
-}
+
+    function App() {
+      return (
+        <BrowserRouter>
+          <Routes>
+            {/* Use <Navigate to="/home" /> or <Navigate to="/Auth" /> to navigate */}
+            {/* <Route path="/" element={<Navigate to="/home" />} /> */}
+            <Route path="/" element={<Paths/>} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      );
+    }
+    
+
 
 export default App;
