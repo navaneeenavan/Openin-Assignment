@@ -26,7 +26,11 @@ function Home() {
               <h6 className="font-poppins font-light text-2xl">BASE </h6>
             </div>
             <div className="flex  justify-end  w-full items-center">
-              <MdOutlineClose onClick={()=> setIsOpen(!isOpen) }size={30} className="text-gray-300 " />
+              <MdOutlineClose
+                onClick={() => setIsOpen(!isOpen)}
+                size={30}
+                className="text-gray-300 "
+              />
             </div>
           </div>
           <div className=" flex flex-col space-y-12 justify-start w-full px-12 py-5 text-xl ">
@@ -54,7 +58,7 @@ function Home() {
             <h6 className="font-poppins font-light text-3xl">BASE </h6>
           </div>
 
-          <div className="space-y-12 mt-10 w-full flex flex-col ml-7  hover:text-blue-800">
+          <div className="space-y-8 mt-10 w-full flex flex-col  ">
             <Logotext
               logo={<MdSpaceDashboard size={27} />}
               text={"Dashboard"}
@@ -168,14 +172,15 @@ function Home() {
                   {" "}
                   1
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {" "}
                   https://google.com
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ...
+                  SamplePrefix
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> <Dropdown1 /></td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><TagBar number={1} /></td>
               </tr>
               <tr className="bg-white">
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
@@ -187,37 +192,12 @@ function Home() {
                   https://google.com
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ...
+                  <Dropdown1 />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              </tr>
-              <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {" "}
-                  1
+                  <TagBar number={1} />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  https://google.com
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ...
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-              </tr>
-              <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {" "}
-                  1
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  https://google.com
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  ...
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"></td>
               </tr>
             </tbody>
           </table>
@@ -229,9 +209,100 @@ function Home() {
 
 function Logotext({ logo, text }) {
   return (
-    <div className="w-full  flex flex-row justify-start space-x-5 text-gray-500 text-center items-center hover:bg-gradient-to-r to-blue-500">
+    <div className="w-full h-full py-3 flex flex-row justify-start space-x-5 text-gray-500 text-center items-center pl-10 hover:bg-blue-100 hover:font-bold hover:text-blue-400">
       <div>{logo} </div>
       <div className="flex justify-center items-center">{text}</div>
+    </div>
+  );
+}
+function TagBar({ number }) {
+  return (
+    <div className="h-6 rounded-md w-20 text-white bg-blue-500 flex items-center justify-center ">
+      Tag {number} <MdOutlineClose className="text-white ml-3" size={15} />
+    </div>
+  );
+}
+function Dropdown1({tag_array}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="relative inline-block text-left">
+      <button
+        onClick={toggleDropdown}
+        type="button"
+        className="text-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center text-grey-300 "
+        value = {tag_array}
+        
+      >
+        Select Tag{" "}
+        <svg
+          className="w-2.5 h-2.5 ms-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 10 6"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="m1 1 4 4 4-4"
+          />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div
+          className=" z-20 origin-top-right absolute right-0 mt-2 w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <div className="py-1" role="none">
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={closeDropdown}
+            >
+              1
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={closeDropdown}
+            >
+              2
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={closeDropdown}
+            >
+              3
+            </a>
+            <a
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+              role="menuitem"
+              onClick={closeDropdown}
+            >
+              4
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
