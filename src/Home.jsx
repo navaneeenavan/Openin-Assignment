@@ -18,7 +18,7 @@ import { table } from "./data";
 function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(table[0].tag);
+
   return (
     <div className="flex flex-row w-screen lg:space-x-96">
       {isOpen && (
@@ -194,14 +194,16 @@ function Logotext({ logo, text }) {
     </div>
   );
 }
-function TagBar({ number }) {
+function TagBar({ number, onRemove }) {
   return (
-    <div className="h-6 rounded-md w-20 text-white bg-blue-500 flex items-center justify-center ">
-      Tag {number} <MdOutlineClose className="text-white ml-3" size={15} />
+    <div className="h-6 rounded-md w-20 text-white bg-blue-500 flex items-center justify-center">
+      Tag {number} <MdOutlineClose className="text-white ml-3" size={15} onClick={onRemove} />
     </div>
   );
 }
-function Dropdown1({ tag_array }) {
+
+
+function Dropdown1({ onTagSelect }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -212,13 +214,17 @@ function Dropdown1({ tag_array }) {
     setIsOpen(false);
   };
 
+  const handleTagSelect = (tag) => {
+    onTagSelect(tag);
+    closeDropdown();
+  };
+
   return (
     <div className="relative inline-block text-left">
       <button
         onClick={toggleDropdown}
         type="button"
         className="text-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center text-grey-300 "
-        value={tag_array}
       >
         Select Tag{" "}
         <svg
@@ -246,74 +252,56 @@ function Dropdown1({ tag_array }) {
           aria-labelledby="options-menu"
         >
           <div className="py-1" role="none">
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={closeDropdown}
-            >
-              1
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={closeDropdown}
-            >
-              2
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={closeDropdown}
-            >
-              3
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-              role="menuitem"
-              onClick={closeDropdown}
-            >
-              4
-            </a>
+            {[1, 2, 3, 4].map((tag) => (
+              <a
+                href="#"
+                key={tag}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                role="menuitem"
+                onClick={() => handleTagSelect(tag)}
+              >
+                {tag}
+              </a>
+            ))}
           </div>
         </div>
       )}
     </div>
   );
 }
+function TableField({ no, link, prefix, Tags }) {
+  const [selectedTags, setSelectedTags] = useState(Tags);
 
-function TableField({ no, link, prefix, Tags })
-  
-{
-  console.log(Tags[0] +  "this is the value");
-  return(
-<tr className="bg-white">
-    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-      {" "}
-      {no}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {prefix}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {link}
-    </td>
-    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      <Dropdown1 />
-    </td>
-    <td className="px-6 py-4 flex space-x-2 whitespace-nowrap text-sm text-gray-500">
-      {" "}
-      {Tags?.map((value, key) => (
-        <TagBar key={key} number={value} />
-      ))}
-    </td>
-  </tr>
-  )
+  const addTag = (tag) => {
+    setSelectedTags([...selectedTags, tag]);
+  };
 
-  
+  const removeTag = (tag) => {
+    const updatedTags = selectedTags.filter((t) => t !== tag);
+    setSelectedTags(updatedTags);
+  };
+
+  return (
+    <tr className="bg-white">
+      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        {no}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        {prefix}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        {link}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        <Dropdown1 onTagSelect={addTag} />
+      </td>
+      <td className="px-6 py-4 flex space-x-2 whitespace-nowrap text-sm text-gray-500">
+        {selectedTags.map((value, key) => (
+          <TagBar key={key} number={value} onRemove={() => removeTag(value)} />
+        ))}
+      </td>
+    </tr>
+  );
 }
 
 export default Home;
